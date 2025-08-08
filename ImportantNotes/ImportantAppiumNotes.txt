@@ -1,0 +1,9 @@
+npm install -g appium
+-----------------------------------------------
+to run appium use command - appium
+-----------------------------------------------
+appium driver install uiautomator2
+
+C:\Users\Ratnakar\AppData\Roaming\npm\node_modules\appium\build\lib\main.js
+
+cls -> to clear command prompt of windows
