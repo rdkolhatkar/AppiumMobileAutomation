@@ -1,4 +1,47 @@
-npm install -g appium
+To start with Appium with Java We have to complete the below requirements
+1) Install JDK and Java and set the JAVA_HOME in Advanced System Settings -> Environment Variables -> System Variables
+2) Download Android Studio to get the Android SDK Package to work with android apps from "https://developer.android.com/studio"
+3) Check if your Android Studio contains the Android Emulator
+4) Emulator is virtual android device which we are using for mobile automation
+5) Download Node -> Node is required for Launching appium server because it is developed in the node platform
+6) Download node js from "https://nodejs.org/en/download"
+----------------------------------------------------------------------------------------------------------------------------------------------
+Set up the Android studio and node js into your system (Windows)
+1) Find the folder "AppData" inside your C Drive, As this folder is always invisible search with below path
+2) ThisPC > OS(C:) > Users > {Particular_User_Name} > AppData
+3) Open Folder "AppData" then open folder called "Local" present inside "AppData"
+4) Open "Android" Folder present inside the "Local" Folder under "AppData"
+5) Open "Sdk" Folder present inside "Android" Folder and Copy the folder path and add it in System Environment Variables
+6) Set ANDROID_HOME -> C:\Users\{Particular_User_Name}\AppData\Local\Android\Sdk in Advanced System Settings -> Environment Variables -> System Variables
+7) Open Android Studio by Launching the Application and select any basic activity & Select any project from template
+8) Once Build is completed in Android Studio, click on "Tools" menu in the topmost task bar of Android Studio
+9) Click on "SDK Manager" under "Tools" menu & select "SDK Tools" Tab under "SDK Manager"
+10) Uncheck the "Hide Obsolete Packages" Check Box & Once it is done you will see the option "Android SDK Tools (Obsolete)" Then click on this check box and click on the Apply Button
+11) Now it will install all Android Tools into your Android Studio & once it is done you will see the "tools" folder inside your "Sdk" folder at C:\Users\{Particular_User_Name}\AppData\Local\Android\Sdk
+12) Now Open the "tools" folder and open the "bin" folder and copy the entire path -> C:\Users\{Particular_User_Name}\AppData\Local\Android\Sdk\tools\bin
+13) Now Go To Advanced System Settings -> Environment Variables -> System Variables -> Path
+14) Set the Path Variable as C:\Users\{Particular_User_Name}\AppData\Local\Android\Sdk\tools\bin
+15) Now Set one more Path for tools as well in System Variables -> Path as :\Users\{Particular_User_Name}\AppData\Local\Android\Sdk\tools
+16) Now set one more path in System Variables -> Path as C:\Users\{Particular_User_Name}\AppData\Local\Android\Sdk\platform-tools
+17) Now Configure the Node JS as NODE_HOME in Advanced System Settings -> Environment Variables -> System Variables
+18) Set NODE_HOME as "C:\Program Files\nodejs" & apart from that you need to set "npm" bin path
+19) Now set one more path in System Variables -> Path as C:\Program Files\nodejs\node_modules\npm\bin
+20) Now Configure the Emulator for launching your virtual device
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Emulator Configuration
+1) Open Android Studio by Launching the Application and select any basic activity & Select any project from template
+2) Go to -> "Tools" menu in the topmost task bar of Android Studio -> Click on "Device Manager"
+3) Here we will create virtual device and deploy our app as ".apk" in the virtual device and run the automation test case
+4) Click on plus icon "+" inside "Device Manager" then click on "Create Virtual Device"
+5) Now you can choose any device -> Refer the AndroidStudio_Setup images at "ImportantNotes/ImportantScreenshots/AndroidStudio_Setup"
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Download and Install Appium Server
+1) Appium server is the core engine of our testing
+2) We will install appium server with node js and npm commands
+3) Open Windows Power Shell or Command Prompt
+4) Open your terminal as administrator & Run command : npm install -g appium
+5) To start the appium server run command in the terminal as : appium
+6) Refer the Refer the AppiumServer_Setup images at ImportantNotes/ImportantScreenshots/AppiumServer_Setup
 -----------------------------------------------
 to run appium use command - appium
 -----------------------------------------------
