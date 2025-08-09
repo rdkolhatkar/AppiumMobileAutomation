@@ -78,3 +78,11 @@ Important Commands for Windows Command Prompt
 9) To stop the Emulator run command : adb -s emulator-{Emulator_Name} emu kill
 10) To clear the command prompt in Windows run command : cls
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Download and Install Appium Inspector
+1) Appium Inspector is a tool to inspect the elements of the mobile application
+2) Go to the website "https://github.com/appium/appium-inspector" OR "https://github.com/appium/appium-inspector/releases"
+3) For Windows download the latest version of Appium Inspector as ".exe" file
+4) Once the download is completed, double click on the ".exe" file to install the Appium Inspector
+5) Once the installation is completed, open the Appium Inspector
+6) Refer the AppiumInspector_Setup images at ImportantNotes/ImportantScreenshots/AppiumInspector_Setup
+7) Now we have to give the details of our android emulator in the Appium Inspector
