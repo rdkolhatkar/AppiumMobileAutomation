@@ -42,11 +42,39 @@ Download and Install Appium Server
 4) Open your terminal as administrator & Run command : npm install -g appium
 5) To start the appium server run command in the terminal as : appium
 6) Refer the Refer the AppiumServer_Setup images at ImportantNotes/ImportantScreenshots/AppiumServer_Setup
------------------------------------------------
-to run appium use command - appium
------------------------------------------------
-appium driver install uiautomator2
-
-C:\Users\Ratnakar\AppData\Roaming\npm\node_modules\appium\build\lib\main.js
-
-cls -> to clear command prompt of windows
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Install Appium Drivers
+1) Android is developed by Google and it has its own driver called "uiautomator2"
+2) We need to install this driver to run our automation test cases on android devices
+3) Open your terminal as administrator & Run command : appium driver install uiautomator2
+4) To check if the driver is installed successfully run the command : appium driver list
+5) Refer the AppiumDriver_Setup images at ImportantNotes/ImportantScreenshots/AppiumDriver_Setup/AppiumDriver_Setup_4.png
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Invoke Appium server automatically
+1) We can invoke the appium server automatically by using the below code snippet
+2) Navigate to appium folder and open the main.js file
+3) Open the file "C:\Users\{Particular_User_Name}\AppData\Roaming\npm\node_modules\appium\build\lib\main.js"
+4) Search for the line "appium.main(args)" and add the below code snippet just before this line
+5) Add the below code snippet to invoke appium server automatically
+```java
+        AppiumDriverLocalService serviceBuilder = new AppiumServiceBuilder()
+                .withAppiumJS(new File("C:/Users/Ratnakar/AppData/Roaming/npm/node_modules/appium/build/lib/main.js")) // Appium requires the absolute path to the "appium/build/lib/main.js" file
+                .withIPAddress("127.0.0.1")
+                .usingPort(4723)
+                .withTimeout(Duration.ofSeconds(120))
+                .build();
+        serviceBuilder.start(); // Start the Appium server service
+```
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Important Commands for Windows Command Prompt
+1) To check if the Java is installed successfully run command : java -version
+2) To check if the Android SDK is installed successfully run command : adb version
+3) To check if the Node JS is installed successfully run command : node -v
+4) To check if the npm is installed successfully run command : npm -v
+5) To check if the Appium server is installed successfully run command : appium -v
+6) To check if the Appium driver is installed successfully run command : appium driver list
+7) To check if the Emulator is installed successfully run command : emulator -list-avds
+8) To start the Emulator run command : emulator -avd {Emulator_Name}
+9) To stop the Emulator run command : adb -s emulator-{Emulator_Name} emu kill
+10) To clear the command prompt in Windows run command : cls
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
