@@ -52,7 +52,7 @@ public class AppiumBasicTest {
         driver.findElement(AppiumBy.accessibilityId("Preference")).click();
         Thread.sleep(1000); // Wait for 1 second to see the action performed on the device
         driver.quit();
-        serviceBuilder.start();
+        serviceBuilder.stop(); // Stop the Appium server service
         serviceBuilder.clearOutPutStreams();// Stop the Appium server service
     }
 }
