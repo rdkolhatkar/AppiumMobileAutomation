@@ -2,6 +2,7 @@ package com.appium.practice.code;
 
 import com.appium.practice.utils.GenericTestUtils;
 import io.appium.java_client.AppiumBy;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 public class WifiSettingsTest extends GenericTestUtils { // extends GenericTestUtils is used to inherit the appiumConfiguration() method from GenericTestUtils class
@@ -22,6 +23,14 @@ public class WifiSettingsTest extends GenericTestUtils { // extends GenericTestU
         // In the "GenericTestUtils" class we have given the "@AfterClass" annotation to the "tearDownAppiumServer()" method, which means this method will be executed after all the test methods in the class are executed
         // So here we don't need to call the "appiumConfiguration()" & "tearDownAppiumServer()" methods again, as it is already called before the test methods are executed
         driver.findElement(AppiumBy.accessibilityId("Preference")).click();
+        // Common syntax of writing xpath in Appium is: //tagName[@attribute='value']
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
+        // Click on the "WiFi settings Check Box" option
+        driver.findElement(By.id("android:id/checkbox")).click();
+        // Click on the "WiFi settings" option
+        // Another way of writing xpath in Appium is: //tagName
+        // In this case we have two elements with the same tag name, so we need to use the index to select the second element
+        driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click(); //(android.widget.RelativeLayout)[2] -> here [2] indicates the second element with the same tag name
     }
 
 }
