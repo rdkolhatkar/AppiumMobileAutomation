@@ -3,6 +3,7 @@ package com.appium.practice.code;
 import com.appium.practice.utils.GenericTestUtils;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class WifiSettingsTest extends GenericTestUtils { // extends GenericTestUtils is used to inherit the appiumConfiguration() method from GenericTestUtils class
@@ -31,6 +32,17 @@ public class WifiSettingsTest extends GenericTestUtils { // extends GenericTestU
         // Another way of writing xpath in Appium is: //tagName
         // In this case we have two elements with the same tag name, so we need to use the index to select the second element
         driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click(); //(android.widget.RelativeLayout)[2] -> here [2] indicates the second element with the same tag name
+        // Now we have to validate the wifi popup tile
+        String wifiAlertTitle = driver.findElement(By.id("android:id/alertTitle")).getText();
+        Assert.assertEquals(wifiAlertTitle, "WiFi settings"); // Asserting the title validation
+        // Now we have to enter the password on wifi settings popup editbox
+        driver.findElement(By.id("android:id/edit")).sendKeys("RatnakarWiFi");
+        // Now we have to click on OK button of the wifi popup
+        // driver.findElement(By.id("android:id/button1")).click(); // This is one way to it
+        // Now as we have multiple elements with same class name we can use the below code
+        driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();
+
+
     }
 
 }

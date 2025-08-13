@@ -32,6 +32,9 @@ public class GenericTestUtils {
         options.setDeviceName("MyAndroidDevice");
         options.setApp("D:/Core Java/projects/AppiumMobileAutomation/src/main/resources/applications/ApiDemos-debug.apk");
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+        // Adding timeouts to invoke driver during the elemental interaction with emulator
+        // These are the global time out applicable for server initialization
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
 
     }
 
