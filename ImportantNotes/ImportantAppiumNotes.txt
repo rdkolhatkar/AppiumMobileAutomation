@@ -87,3 +87,7 @@ Download and Install Appium Inspector
 6) Refer the AppiumInspector_Setup images at ImportantNotes/ImportantScreenshots/AppiumInspector_Setup
 7) Now we have to give the details of our android emulator in the Appium Inspector
 8) Refer the image ImportantNotes/ImportantScreenshots/AppiumServer_Setup/AppiumInspectorCapabilities_Android.png
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Important appium-gestures-plugin
+WebSite: https://github.com/AppiumTestDistribution/appium-gestures-plugin
+WebSite: https://github.com/appium/dmg-template/blob/master/Appium.app/Contents/Resources/node_modules/appium/docs/gestures.md
