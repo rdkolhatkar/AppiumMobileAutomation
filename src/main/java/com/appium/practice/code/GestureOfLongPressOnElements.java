@@ -1,12 +1,14 @@
 package com.appium.practice.code;
 
 import com.appium.practice.utils.GenericTestUtils;
+import com.appium.practice.utils.MobileActionUtils;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
@@ -37,7 +39,7 @@ public class GestureOfLongPressOnElements extends GenericTestUtils {
         RemoteWebElement longPress = (RemoteWebElement) driver.findElement(AppiumBy.accessibilityId("longpress"));
         driver.executeScript("gesture: longPress", Map.of("elementId", longPress.getId(), "pressure", 0.5, "duration", 800));
         */
-        WebElement peopleNameAndroidAppElement = driver.findElement(By.xpath("//android.widget.ExpandableListView[@text='People Names']"));
+        WebElement peopleNameAndroidAppElement = driver.findElement(By.xpath("//android.widget.TextView[@text='People Names']"));
         ((JavascriptExecutor)driver).executeScript(
                 "mobile: longClickGesture",
                 ImmutableMap.of(
@@ -45,6 +47,27 @@ public class GestureOfLongPressOnElements extends GenericTestUtils {
                         "duration",2000
                 )
         );
+        String popUpManuText = driver.findElement(By.id("android:id/title")).getText();
+        Assert.assertEquals(popUpManuText, "Sample menu");
+        Assert.assertTrue(driver.findElement(By.id("android:id/title")).isDisplayed(),
+                "Pop up menu is not displayed after long press on People Names button in Android App"
+        );
     }
 
+    @Test
+    public void longPressMobileActionUtilsTest() throws MalformedURLException, URISyntaxException {
+        // appiumConfiguration();
+        driver.findElement(AppiumBy.accessibilityId("Views")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Expandable Lists']")).click();
+        driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
+        WebElement peopleNameAndroidAppElement = driver.findElement(By.xpath("//android.widget.TextView[@text='People Names']"));
+        // Using MobileActionUtils class to perform long press on the element
+        MobileActionUtils mobileActionUtils = new MobileActionUtils(driver);
+        mobileActionUtils.longPressOnElement(peopleNameAndroidAppElement, 2000);
+        String popUpManuText = driver.findElement(By.id("android:id/title")).getText();
+        Assert.assertEquals(popUpManuText, "Sample menu");
+        Assert.assertTrue(driver.findElement(By.id("android:id/title")).isDisplayed(),
+                "Pop up menu is not displayed after long press on People Names button in Android App"
+        );
+    }
 }
