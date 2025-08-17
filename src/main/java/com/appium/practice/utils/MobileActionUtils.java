@@ -62,4 +62,14 @@ public class MobileActionUtils {
         return canScrollMore;
     }
 
+    // Swipe action can be defined here
+    public void swipeOnElement(WebElement element, String direction, double percent) {
+        // Implementation for swiping on the given element in the specified direction with the given percentage
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "direction", direction,
+                "percent", percent
+        ));
+    }
+
 }
