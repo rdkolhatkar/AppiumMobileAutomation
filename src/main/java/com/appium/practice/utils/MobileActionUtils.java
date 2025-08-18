@@ -72,4 +72,18 @@ public class MobileActionUtils {
         ));
     }
 
+    // Drag and drop action can be defined here
+    public void dragAndDropElement(WebElement source, int endX, int endY, int duration) {
+        // Implementation for dragging and dropping the source element to the specified coordinates
+        ((JavascriptExecutor) driver).executeScript(
+                "mobile: dragGesture",
+                ImmutableMap.of(
+                        "elementId", ((RemoteWebElement) source).getId(),
+                        "endX", endX,
+                        "endY", endY,
+                        "duration", duration
+                )
+        );
+    }
+
 }
