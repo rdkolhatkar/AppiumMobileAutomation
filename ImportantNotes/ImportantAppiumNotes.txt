@@ -91,3 +91,4 @@ Download and Install Appium Inspector
 Important appium-gestures-plugin
 WebSite: https://github.com/AppiumTestDistribution/appium-gestures-plugin
 WebSite: https://github.com/appium/dmg-template/blob/master/Appium.app/Contents/Resources/node_modules/appium/docs/gestures.md
+WebSite: https://appium.io/docs/en/latest/
