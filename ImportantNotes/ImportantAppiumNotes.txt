@@ -92,3 +92,19 @@ Important appium-gestures-plugin
 WebSite: https://github.com/AppiumTestDistribution/appium-gestures-plugin
 WebSite: https://github.com/appium/dmg-template/blob/master/Appium.app/Contents/Resources/node_modules/appium/docs/gestures.md
 WebSite: https://appium.io/docs/en/latest/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Identify the Mobile application package and Mobile application activity
+1) Open the command prompt and run the command "adb devices" to check if the emulator is running
+2) Open the Android Emulator and launch the application you want to automate using the Android Studio
+3) Open the specific application activity which you want to automate using the Android Emulator from Android Studio
+4) Open the command prompt and run the command "adb shell dumpsys activity activities | findstr 'mFocusedActivity'"
+5) For windows users, you can use the command {adb shell dumpsys window | find "mCurrentFocus"}
+6) For MAC users, you can use the command {adb shell dumpsys grep | find -E 'mCurrentFocus'}
+7) This command will give you the package name and activity name of the application you are currently using in the emulator
+8) Example: <"io.appium.android.apis/io.appium.android.apis.preference.PreferenceDependencies"> -> Here before "/" we have the package name and after "/" we have the activity name
+9) You can also use the command "adb shell pm list packages" to list all the installed packages in the emulator
+10) You can also use the command "adb shell pm list packages -f" to list all the installed packages with their path in the emulator
+11) You can also use the command "adb shell pm path <package_name>" to get the path of a specific package in the emulator
+12) You can also use the command "adb shell pm path <package_name> | findstr 'base.apk'" to get the path of the base APK of a specific package in the emulator
+13) Please refer the image ImportantNotes/ImportantScreenshots/PackageAndActivity_MobileApp/MobileApplicationPackageAndActivity.PNG for more details
+14) Reference documentation - https://github.com/appium/appium-uiautomator2-driver#mobile-startactivity
