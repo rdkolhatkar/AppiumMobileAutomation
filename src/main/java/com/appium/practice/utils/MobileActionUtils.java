@@ -86,4 +86,13 @@ public class MobileActionUtils {
         );
     }
 
+    // Mobile Application Package and Activity can be defined here
+    public void startActivity(String packageName, String activityName) {
+        // Implementation for starting the specified application package and activity
+        ((JavascriptExecutor) driver).executeScript("mobile: startActivity",
+                ImmutableMap.of(
+                        "intent", packageName + "/" + activityName
+                ));
+    }
+
 }
