@@ -108,3 +108,9 @@ Identify the Mobile application package and Mobile application activity
 12) You can also use the command "adb shell pm path <package_name> | findstr 'base.apk'" to get the path of the base APK of a specific package in the emulator
 13) Please refer the image ImportantNotes/ImportantScreenshots/PackageAndActivity_MobileApp/MobileApplicationPackageAndActivity.PNG for more details
 14) Reference documentation - https://github.com/appium/appium-uiautomator2-driver#mobile-startactivity
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hybrid Mobile Application
+1) Hybrid mobile application is a combination of both native and web application
+2) In hybrid mobile application we can see both Android and WebView context
+3) To automate the hybrid mobile application we need to switch the context from Native to WebView
+
