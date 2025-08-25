@@ -113,4 +113,18 @@ Hybrid Mobile Application
 1) Hybrid mobile application is a combination of both native and web application
 2) In hybrid mobile application we can see both Android and WebView context
 3) To automate the hybrid mobile application we need to switch the context from Native to WebView
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Install App directly into your emulator using adb command
+1) Navigate to the SDK folder -> platform-tools folder, Path: C:\Users\{Particular_User_Name}\AppData\Local\Android\Sdk\platform-tools
+2) Copy the path of the platform-tools folder and open the command prompt
+3) Navigate to the platform-tools folder using the command "cd {path_of_platform_tools_folder}"
+4) Now run the command "adb install {path_of_apk_file}" to install the apk file into your emulator
+5) Example: adb install "C:\Users\Ratnakar\Downloads\apiDemos.apk"
+6) You can also use the command "adb install -r {path_of_apk_file}" to reinstall the apk file into your emulator
+7) Example: adb install -r "C:\Users\Ratnakar\Downloads\apiDemos.apk"
+8) To check if the application is installed successfully run the command "adb shell pm list packages | findstr '{package_name}'"
+9) Example: adb shell pm list packages | findstr 'io.appium.android.apis'
+10) To uninstall the application from your emulator run the command "adb uninstall {package_name}"
+11) Example: adb uninstall io.appium.android.apis
+12) Note: Your emulator should be running before executing these commands
+13) Please refer the image ImportantNotes/ImportantScreenshots/ImportantNotes/ImportantScreenshots/InstallingAppOnEmulatorWithCommands/AdbCommandsForAppInstallationOnEmulator.PNG for more details
