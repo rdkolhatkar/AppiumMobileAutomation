@@ -1,15 +1,9 @@
 {
-  "capabilities": {
-    "alwaysMatch": {
-      "platformName": "Android",
-      "appium:automationName": "UiAutomator2",
-      "appium:deviceName": "MyAndroidDevice",
-      "appium:app": "D:/Core Java/projects/AppiumMobileAutomation/src/main/resources/applications/ApiDemos-debug.apk",
-      "appium:ensureWebviewsHavePages": true,
-      "appium:nativeWebScreenshot": true,
-      "appium:newCommandTimeout": 3600,
-      "appium:connectHardwareKeyboard": true
-    },
-    "firstMatch": [{}]
-  }
+  "platformName": "Android",
+  "appium:deviceName": "emulator-5554",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "/path/to/your/app.apk",
+  "appium:noReset": true,
+  "appium:newCommandTimeout": 60,
+  "appium:otherCapability": "value"
 }

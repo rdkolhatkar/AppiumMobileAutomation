@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 
+import java.util.HashMap;
+
 public class MobileActionUtils {
     public AndroidDriver driver;
 
@@ -93,6 +95,14 @@ public class MobileActionUtils {
                 ImmutableMap.of(
                         "intent", packageName + "/" + activityName
                 ));
+    }
+
+    // Scroll to find the element inside dropdown list
+    public void scrollToFindTheElementInDropdownList(String elementText) {
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + elementText + "\")" +
+                        ".instance(0))" // instance(0) is used to specify the first occurrence of the element
+        )).click();
     }
 
 }

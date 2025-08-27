@@ -1,0 +1,6 @@
+{
+  "appium:app": "D:/Core Java/projects/AppiumMobileAutomation/src/main/resources/applications/General-Store.apk",
+  "appium:deviceName": "MyAndroidDevice",
+  "platformName": "android",
+  "appium:automationName": "UiAutomator2"
+}
