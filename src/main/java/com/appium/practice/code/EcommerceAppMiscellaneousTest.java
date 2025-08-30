@@ -3,7 +3,12 @@ package com.appium.practice.code;
 import com.appium.practice.utils.EcommerceAppGenericUtils;
 import com.appium.practice.utils.MobileActionUtils;
 import io.appium.java_client.AppiumBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
     // First we have to login to the Ecommerce app
@@ -38,7 +43,22 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
         }
         // Now we have to go to the cart page
         driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
-        Thread.sleep(2000); // Adding sleep to observe the action, can be removed in production code
-        
+        // Thread.sleep(2000); // Adding sleep to observe the action, can be removed in production code
+        // Here the product id is same for both products page and carts page, So there might be a chance that it will fetch the element text before cart page is loaded.
+        // So we have to wait till cart page is loaded completely.
+        // Now we have to apply wait till next page is fully loaded. We can put a check in the code which will wait till page title changes from "Products" to "Cart"
+        // Now to use the explicit wait we have to install selenium-support library.
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        webDriverWait.until(
+                ExpectedConditions.attributeContains(
+                driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/toolbar_title")),
+                "text",
+                "Cart"
+            )
+        );
+        // Now we are inside the Cart Page
+        // Now we have to validate if item is present in the cart or not by using assertions
+        String cartPageProduct = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/productName")).getText();
+        Assert.assertEquals(cartPageProduct, "Jordan 6 Rings");
     }
 }
