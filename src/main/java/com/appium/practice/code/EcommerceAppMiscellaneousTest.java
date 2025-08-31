@@ -3,12 +3,14 @@ package com.appium.practice.code;
 import com.appium.practice.utils.EcommerceAppGenericUtils;
 import com.appium.practice.utils.MobileActionUtils;
 import io.appium.java_client.AppiumBy;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
 public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
     // First we have to login to the Ecommerce app
@@ -60,5 +62,43 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
         // Now we have to validate if item is present in the cart or not by using assertions
         String cartPageProduct = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/productName")).getText();
         Assert.assertEquals(cartPageProduct, "Jordan 6 Rings");
+    }
+
+    // Now we have one more test scenario, first we have to add two different products in Ecommerce application and then go to cart and check the total amount displayed is correct or not.
+    // Once the amount validation is successful then we have to click on button called "Visit to the website to complete purchase"
+
+    @Test
+    public void verifyTotalAmountDisplayedInCart() throws InterruptedException {
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/nameField")).sendKeys("Niranjana");
+        driver.hideKeyboard();
+        driver.findElement(AppiumBy.xpath("//android.widget.RadioButton[@text='Female']")).click();
+        driver.findElement(AppiumBy.id("android:id/text1")).click();
+        MobileActionUtils mobileActionUtils = new MobileActionUtils(driver);
+        mobileActionUtils.scrollToFindTheElementInDropdownList("Argentina");
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+        Thread.sleep(1000);
+        // Adding First item to cart
+        driver.findElements(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])")).get(0).click(); // Here we are using .findElements().get() method for calling the index elements
+        driver.findElement(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])[1]")).click(); // Here we are passing the index values in the xpath itself
+        // But here is one catch that we have to understand. First is when we click on the "ADD TO CART" Button it will get disabled for that item and we will be seeing the "ADDED TO CART" to cart message
+        // Then the cart item index value for button "ADD TO CART" will change for below products, So in this case .findElements() will not work, because it will give us the error as array out of bound
+        // To fix this we can again use the same code ->  driver.findElements(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])")).get(0).click();
+        // Now we have to go to the cart page
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+        // Now we have to retrieve the text values of price from each product displayed in the cart and then we have to apply sum function to calculate the Total Amount.
+        // Then we will extract the Total Amount Displayed on the cart page and then we have to compare the calculated Total Amount & Extracted Total Amount for validation
+        // Extracting price of each item
+        List<WebElement> productPrices = driver.findElements(AppiumBy.id("com.androidsample.generalstore:id/productPrice"));
+        int productCount = driver.findElements(AppiumBy.id("com.androidsample.generalstore:id/productPrice")).size(); // With this code we can check how many items are present in the cart.
+        double sumOfAmountsOfProducts = 0;
+        for(int i = 0; i < productCount; i++){
+            String retrivedAmountOfEachProduct = productPrices.get(i).getText();
+            // Now on Cart page Amount is displayed in "$123" format and getText() method will retrieve it as String, So we have to remove the $ symbol and then convert string to integer or double
+            String productAmount = retrivedAmountOfEachProduct.substring(1); // With this step we have successfully removed the $
+            Double actualPriceOfProduct = Double.parseDouble(productAmount);
+            sumOfAmountsOfProducts = sumOfAmountsOfProducts + actualPriceOfProduct;
+
+        }
+        System.out.println(sumOfAmountsOfProducts);
     }
 }
