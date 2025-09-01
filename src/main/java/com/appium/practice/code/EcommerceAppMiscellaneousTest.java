@@ -1,6 +1,7 @@
 package com.appium.practice.code;
 
 import com.appium.practice.utils.EcommerceAppGenericUtils;
+import com.appium.practice.utils.EcommerceAppReusableMethods;
 import com.appium.practice.utils.MobileActionUtils;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.WebElement;
@@ -100,5 +101,13 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
 
         }
         System.out.println(sumOfAmountsOfProducts);
+        // Now we have to fetch the Total Amount displayed on the Cart page
+        String totalAmountDisplayedOnCartPage = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
+        // Same problem as before it will come as a String with $ value
+        // Implementing reusable method from EcommerceAppReusableMethods class
+        EcommerceAppReusableMethods ecommerceAppReusableMethods = new EcommerceAppReusableMethods();
+        double formattedTotalAmountDisplayedOnCartPage = ecommerceAppReusableMethods.getFormattedAmounts(totalAmountDisplayedOnCartPage);
+        Assert.assertEquals(sumOfAmountsOfProducts, formattedTotalAmountDisplayedOnCartPage);
+
     }
 }
