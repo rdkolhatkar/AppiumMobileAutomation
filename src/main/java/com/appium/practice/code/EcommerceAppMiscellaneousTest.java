@@ -4,6 +4,7 @@ import com.appium.practice.utils.EcommerceAppGenericUtils;
 import com.appium.practice.utils.EcommerceAppReusableMethods;
 import com.appium.practice.utils.MobileActionUtils;
 import io.appium.java_client.AppiumBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -98,7 +99,6 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
             String productAmount = retrivedAmountOfEachProduct.substring(1); // With this step we have successfully removed the $
             Double actualPriceOfProduct = Double.parseDouble(productAmount);
             sumOfAmountsOfProducts = sumOfAmountsOfProducts + actualPriceOfProduct;
-
         }
         System.out.println(sumOfAmountsOfProducts);
         // Now we have to fetch the Total Amount displayed on the Cart page
@@ -108,6 +108,34 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
         EcommerceAppReusableMethods ecommerceAppReusableMethods = new EcommerceAppReusableMethods();
         double formattedTotalAmountDisplayedOnCartPage = ecommerceAppReusableMethods.getFormattedAmounts(totalAmountDisplayedOnCartPage);
         Assert.assertEquals(sumOfAmountsOfProducts, formattedTotalAmountDisplayedOnCartPage);
-
+    }
+    @Test
+    public void longPressOnEcommerceAppTermsOfConditionsButton() throws InterruptedException {
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/nameField")).sendKeys("Niranjana");
+        driver.hideKeyboard();
+        driver.findElement(AppiumBy.xpath("//android.widget.RadioButton[@text='Female']")).click();
+        driver.findElement(AppiumBy.id("android:id/text1")).click();
+        MobileActionUtils mobileActionUtils = new MobileActionUtils(driver);
+        mobileActionUtils.scrollToFindTheElementInDropdownList("Argentina");
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+        Thread.sleep(1000);
+        // Adding items to cart
+        driver.findElements(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])")).get(0).click();
+        driver.findElement(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])[1]")).click();
+        // Now we have to go to the cart page
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+        // Navigate to terms of Conditions
+        WebElement termsOfConditionsButton = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/termsButton"));
+        // Applying Gesture of Long Press
+        mobileActionUtils.longPressOnElement(termsOfConditionsButton, 2000);
+        // Alert Message will display which contains the Terms Of Conditions.
+        // Extract the Title of Alert message and close the Alert PopUp
+        String TermsOfConditionsAlertMessageTitle = driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/alertTitle")).getText();
+        System.out.println(TermsOfConditionsAlertMessageTitle);
+        driver.findElement(AppiumBy.id("android:id/button1")).click();
+        // Now click on the CheckBox & Placing the order using purchase button
+        driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
+        Thread.sleep(2000);
     }
 }
