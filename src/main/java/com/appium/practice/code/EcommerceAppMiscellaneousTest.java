@@ -4,7 +4,10 @@ import com.appium.practice.utils.EcommerceAppGenericUtils;
 import com.appium.practice.utils.EcommerceAppReusableMethods;
 import com.appium.practice.utils.MobileActionUtils;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +16,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
     // First we have to login to the Ecommerce app
@@ -137,5 +141,46 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
         driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
         Thread.sleep(2000);
+    }
+
+    @Test
+    public void hybridAppWebBrowserRenderingTest() throws InterruptedException {
+        /*
+        HybridApp → The app under test is a hybrid application (built using web technologies like HTML, CSS, JavaScript, but packaged in a native shell).
+        WebBrowserRendering → The test focuses on how the hybrid app’s embedded browser component (WebView/WKWebView/Chromium engine) renders the UI.
+        */
+        // In our case Ecommerce app is a hybrid app because when we click on the "Visit to the website to complete purchase" button it will navigate us to a webview page
+        // When clicking on the button "Visit to the website to complete purchase" it will open a Google page inside the Mobile device
+        // By default android driver will not have the knowledge of webview page, So we have to switch the context from native app to webview
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/nameField")).sendKeys("Niranjana");
+        driver.hideKeyboard();
+        driver.findElement(AppiumBy.xpath("//android.widget.RadioButton[@text='Female']")).click();
+        driver.findElement(AppiumBy.id("android:id/text1")).click();
+        MobileActionUtils mobileActionUtils = new MobileActionUtils(driver);
+        mobileActionUtils.scrollToFindTheElementInDropdownList("Argentina");
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+        driver.findElements(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])")).get(0).click();
+        driver.findElement(AppiumBy.xpath("(//android.widget.TextView[@text='ADD TO CART'])[1]")).click();
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+        driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
+        Thread.sleep(6000); // Waiting for 6 seconds to load the chrome browser page
+        // Now we have to switch the context from native app to webview
+        Set<String> AppContextViews = driver.getContextHandles(); // This will give us the list of all contexts available in the app
+        // Now we have to print each of the context available in the app
+        for(String AppContextNames : AppContextViews){
+            System.out.println(AppContextNames);
+        }// We need to for loop to identify the correct name of the webview context
+        driver.context("WEBVIEW_com.androidsample.generalstore"); // This will switch the context to webview
+        // Now we will search on google page for "Rahul Shetty Academy"
+        driver.findElement(By.name("q")).sendKeys("Rahul Shetty Academy");
+        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+        // Now after searching we have to capture the title of the page and then go back to native app
+        Thread.sleep(4000);
+        System.out.println(driver.getTitle());
+        // Now go back to mobile App
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+        // Now switch context to native app
+        driver.context("NATIVE_APP");
     }
 }
