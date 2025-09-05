@@ -30,6 +30,8 @@ public class EcommerceAppGenericUtils {
         serviceBuilder.start(); // Start the Appium server service
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("MyAndroidDevice");
+        // Setting ChromeDriver executable path to avoid the version mismatch error
+        options.setChromedriverExecutable("D:/Core Java/projects/AppiumMobileAutomation/src/main/resources/ChromeDriver/chromedriver.exe");
         options.setApp("D:/Core Java/projects/AppiumMobileAutomation/src/main/resources/applications/General-Store.apk");
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
         // Adding timeouts to invoke driver during the elemental interaction with emulator

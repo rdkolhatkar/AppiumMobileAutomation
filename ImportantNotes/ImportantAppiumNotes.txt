@@ -128,3 +128,17 @@ Install App directly into your emulator using adb command
 11) Example: adb uninstall io.appium.android.apis
 12) Note: Your emulator should be running before executing these commands
 13) Please refer the image ImportantNotes/ImportantScreenshots/ImportantNotes/ImportantScreenshots/InstallingAppOnEmulatorWithCommands/AdbCommandsForAppInstallationOnEmulator.PNG for more details
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Steps to Download Older ChromeDriver Versions
+1) Open the ChromeDriver storage archive
+    👉 https://chromedriver.storage.googleapis.com/index.html
+2) This page lists all versions ever released. Scroll or search (Ctrl + F) for the version you want, e.g. 95.0.4638.54.
+3) Click on the version folder. Example:
+    👉 https://chromedriver.storage.googleapis.com/index.html?path=95.0.4638.54/
+4) Inside that folder, download based on your OS:
+    chromedriver_win32.zip → Windows
+    chromedriver_mac64.zip → macOS
+    chromedriver_linux64.zip → Linux
+5) Extract the ZIP file → you’ll get chromedriver.exe (Windows) or chromedriver (Linux/Mac).
+6) Add it to your PATH so Selenium or your automation tool can find it.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

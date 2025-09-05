@@ -172,6 +172,10 @@ public class EcommerceAppMiscellaneousTest extends EcommerceAppGenericUtils {
             System.out.println(AppContextNames);
         }// We need to for loop to identify the correct name of the webview context
         driver.context("WEBVIEW_com.androidsample.generalstore"); // This will switch the context to webview
+        // Here the driver expects the ChromeDriver.exe file to be present in the system, So we have to set the path of chromedriver.exe in the system variable
+        // In our Error log Emulator is a required ChromeDriver version as 95.0.4638.54 but in our system we have 116 version, So we have to download the required version of chromedriver.exe file and set the path in the system variable
+        // error: No Chromedriver found that can automate Chrome '95.0.4638'
+        // This we will add in our "EcommerceAppGenericUtils.class"
         // Now we will search on google page for "Rahul Shetty Academy"
         driver.findElement(By.name("q")).sendKeys("Rahul Shetty Academy");
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
