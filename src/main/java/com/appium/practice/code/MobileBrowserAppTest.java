@@ -2,7 +2,9 @@ package com.appium.practice.code;
 
 import com.appium.practice.utils.MobileBrowserGenericUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MobileBrowserAppTest extends MobileBrowserGenericUtils {
@@ -22,6 +24,12 @@ public class MobileBrowserAppTest extends MobileBrowserGenericUtils {
     }
     @Test
     public void mobileBrowserFunctionalityTestForAndroidApp(){
-
+        driver.get("https://rahulshettyacademy.com/angularAppdemo/");
+        driver.findElement(By.xpath("//span[@class='navbar-toggler-icon']")).click();
+        driver.findElement(By.cssSelector("a[routerlink*='products']")).click();
+        // Now we have to scroll down on the Mobile Browser App With Appium
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,1000)", ""); // Scrolling Down
+        String elementText = driver.findElement(By.cssSelector("a[href*='products/3']")).getText();
+        Assert.assertEquals(elementText, "Devops");
     }
 }
