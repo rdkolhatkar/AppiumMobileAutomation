@@ -142,3 +142,13 @@ Steps to Download Older ChromeDriver Versions
 5) Extract the ZIP file → you’ll get chromedriver.exe (Windows) or chromedriver (Linux/Mac).
 6) Add it to your PATH so Selenium or your automation tool can find it.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+To switch a website to its mobile view in the Chrome browser, open Developer Tools by pressing F12 or right-clicking on the page and selecting "Inspect".
+Then, click the "Toggle device toolbar" icon (it looks like a mobile and a tablet) to activate Device Mode. Next, select a specific mobile device from the dropdown menu, and refresh the page to see the mobile layout.
+Step-by-step instructions:
+1) Open the website you want to view in Chrome.
+2) Open Developer Tools by Pressing the F12 key on your keyboard Or, right-clicking anywhere on the webpage and selecting "Inspect" from the context menu.
+3) Activate the Device Toolbar by clicking the "Toggle device toolbar" icon. It looks like a mobile phone and a tablet side-by-side and is usually located at the top of the Developer Tools panel.
+4) Select a mobile device from the Dimensions dropdown menu to simulate that device's viewport.
+5) Refresh the page by clicking the reload button or pressing F5. The page will then display in its mobile view, allowing you to see how it appears on a mobile device.
+6) Refer the Images from ImportantNotes/ImportantScreenshots/SwitchWebsiteToMobileViewOnChromeBrowser
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

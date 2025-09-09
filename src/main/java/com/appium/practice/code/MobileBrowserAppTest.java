@@ -16,6 +16,12 @@ public class MobileBrowserAppTest extends MobileBrowserGenericUtils {
         driver.findElement(By.name("q")).sendKeys("Rahul Shetty Academy");
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
         Thread.sleep(2000);
+        // In mobile browser Testing Appium inspector cannot help in identifying the xpath and locators of the website.
+        // So for that we have to go to use the traditional selenium concepts
+        // Refer the important notes section for detailed description.
+    }
+    @Test
+    public void mobileBrowserFunctionalityTestForAndroidApp(){
 
     }
 }
