@@ -1,4 +1,4 @@
-package com.appium.test;
+package com.appium.iOS;
 
 public class AppTest {
 }
